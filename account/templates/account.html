@@ -1,10 +1,66 @@
 {% extends 'layaout.html' %}
-
+{% load static %}
 
 {% block content %}
-		<form action="/your-name/" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit" />
-</form>
+
+<div  class="container">
+	<button class="openModalRegister">Register</button>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-register">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Inscription</h4>
+      </div>
+      <div class="modal-body">
+       	<form>
+		    {% csrf_token %}
+		    <div class="fieldWrapper">
+			    <label for="{{ form.gender.id_for_label }}">Votre civilité:</label>
+			    {{ form.gender }}
+			    {{ form.gender.errors }}
+			</div>
+		    <div class="fieldWrapper">
+			    <label for="{{ form.firstname.id_for_label }}">Votre prénom:</label>
+			    {{ form.firstname }}
+			    {{ form.firstname.errors }}
+			</div>
+		    <div class="fieldWrapper">
+			    <label for="{{ form.lastname.id_for_label }}">Votre nom:</label>
+			    {{ form.lastname }}
+			    {{ form.lastname.errors }}
+			</div>
+		    <div class="fieldWrapper">
+			    <label for="{{ form.birthdayDate.id_for_label }}">Votre date de naissance:</label>
+			    {{ form.birthdayDate }}
+			    {{ form.birthdayDate.errors }}
+			</div>
+		    <div class="fieldWrapper">
+			    <label for="{{ form.password.id_for_label }}">Votre mot de passe:</label>
+			    {{ form.password }}
+			    {{ form.password.errors }}
+			</div>
+		    <div class="fieldWrapper">
+			    <label for="{{ form.level.id_for_label }}">Votre niveau d'etude:</label>
+			    {{ form.level }}
+			    {{ form.level.errors }}
+			</div>
+		    <div class="fieldWrapper">
+			    <label for="{{ form.school.id_for_label }}">Votre fac:</label>
+			    {{ form.school }}
+			    {{ form.school.errors }}
+			</div>
+		</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary submit-form">Envoyer</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script type="text/javascript">
+error = '{{error}}';
+</script>
 {% endblock %}
